@@ -1,3 +1,5 @@
+import { exo1, exo2, exo3, exo4, exo5, exo6 } from "./functions.js";
+
 let body = document.querySelector("body");
 
 let main = document.createElement("main");
@@ -32,64 +34,40 @@ puceBouton6.innerText = "Exercice 6";
 
 listeBouton.append(puceBouton1, puceBouton2, puceBouton3, puceBouton4, puceBouton5, puceBouton6);
 
-let div = document.createElement("div");
-div.classList.add("container", "p-5", "bg-secondary");
+let divParent = document.createElement("div");
+divParent.classList.add("container", "p-5", "bg-secondary");
+divParent.id = "parent";
 
 nav.appendChild(listeBouton);
-main.append(titre, nav, div);
-body.append(main);
+main.append(titre, nav, divParent);
+body.appendChild(main);
 
-puceBouton1.addEventListener("click", function () {
-    let titre2 = document.createElement("h2");
-    titre2.innerText = "le titre modifié";
-    titre2.classList.add("bg-dark", "text-danger");
-    
-    div.appendChild(titre2);
-});
+let divParentSelector = document.querySelector("#parent");
 
-puceBouton2.addEventListener("click", function () {
-    let p = document.createElement("p");
-    p.innerText = "Mettre un écouteur d'événement sur les boutons nav et changer le panel en conséquence";
-    div.appendChild(p);
-});
 
-puceBouton3.addEventListener("click", function () {
-    let welcome = document.createElement("h2");
-    welcome.innerText = "welcome"
-
-    let input = document.createElement("input");
-
-    let go = document.createElement("button");
-    go.innerText = "go";
-
-    div.append(welcome, input, go);
-
-    go.addEventListener("click", function () {
-        let utilisateur = input.value
-        welcome.innerText = `welcome ${utilisateur}`;
-    });
-});
-
-puceBouton5.addEventListener("click", function () {
-    let titre3 = document.createElement("h2");
-    titre3.innerText = "Générer des éléments du DOM";
-
-    let p = document.createElement("p");
-    p.innerText= "Cliquer sur le bouton ci-dessous pour générer des oeufs.";
-
-    let bouton = document.createElement("button");
-    bouton.innerText = "Ajouter un oeuf";
-    bouton.classList.add("btn", "btn-success", "text-light");
-
-    let br = document.createElement("br");
-
-    div.append(titre3, p, bouton, br);
-
-    bouton.addEventListener("click", function () {
-        let image = document.createElement("img");
-        image.src = "public/images/egg.gif";
-
-        div.appendChild(image);
+for (let i = 0; i < listeBouton.children.length; i++) {
+    let e = listeBouton.children[i];
+    e.addEventListener("click", function () {
+        switch (i) {
+            case 0:
+                exo1(divParentSelector)
+                break;
+            case 1:
+                exo2(divParentSelector)
+                break;
+            case 2:
+                exo3(divParentSelector)                
+                break;
+            case 3:
+                exo4(divParentSelector)
+                break;
+            case 4:
+                exo5(divParentSelector)
+                break;
+            case 5:
+                exo6(divParentSelector);
+                break;
+        }
     })
-});
+}
 
